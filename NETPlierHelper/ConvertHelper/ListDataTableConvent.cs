@@ -1,11 +1,24 @@
-﻿using System;
+﻿// FileInfo
+// File:"ListDataTableConvent.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:ListDataTableConvent
+// 1.ConvertListToDataTable<T>(IList<T> list)
+// 2.ConvertDataTableToList(DataTable table)
+//
+// File Lines:92
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jund.NETHelper.ConvertHelper
 {

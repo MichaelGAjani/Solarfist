@@ -1,4 +1,35 @@
-﻿using System;
+﻿// FileInfo
+// File:"SerializeHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:SerializeHelper
+// For XML
+// 1.XmlSerialized(T t, string outputfile)
+// 2.XmlDeSerialized(string xmlFile)
+// 3.XmlSerialized(T t)
+// 4.XmlDeSerializedString(string xml)
+//
+// For Soap
+// 5.SoapSerialized(T item)
+// 6.SoapDeSerialized(string str)
+//
+// For Binary
+// 7.BinarySerialized(T t)
+// 8.BinaryDeSerialized(string str)
+//
+// For Json
+// 9.ConvertObjectToJsonString(Object obj)
+// 10.ConvertJsonStringToObject(string str)
+//
+// File Lines:173
+using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization.Formatters.Soap;
