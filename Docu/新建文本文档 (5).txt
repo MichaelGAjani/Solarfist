@@ -1,0 +1,85 @@
+1.NET Base Tools 老虎钳
+2.Database Base 锯齿刀
+3.Communication Base 螺丝刀
+4.Math Base 锉刀
+5.AI&Statistics 剥线器
+6.MES Core 主刀
+7.Multiple Apillication 钥匙扣
+8.数据订阅与推送 剪刀
+9.报表订阅 尺子
+10.消息队列 开瓶器
+
+.NET Base 包含
+1.1 Classes and generics
+1.2 Collections, enumerators, and iterators
+1.3 Data Type
+1.4 Lambda
+1.5 Debugging and exception
+1.6 Reflection and dynamic
+1.7 Regular expression
+1.8 I/O
+1.9 Web
+1.10 XML
+1.11 Safety
+1.12 Thread
+1.13 Windows System
+1.14 Registry
+1.15 Log
+1.16 Zip
+1.17 Json
+
+Database Base 包含
+支持的数据库
+2.1.1 SQL Server 2008
+2.1.2 SQL Server 2012
+2.1.3 MySQL
+2.1.4 Oracle
+2.1.5 Sqlite
+包含的功能
+2.2.1 数据库交互
+2.2.2 数据库对象结构的抽取
+
+Communication Base 包含
+3.1 OPC
+3.2 Socket
+3.3 RFID
+3.4 Bluetooth
+3.5 无线电
+
+AI&Statistics 包含
+4.1 数据集处理
+4.2 数据展示
+4.3 数据分析
+4.4 训练机器人
+4.5 日程表
+
+工具箱包含
+1.服务管理器
+2.数据库文档生产器
+3.随机数据生成器
+4.AI 可视化工具
+5.类文件、对数据库存储过程以及调用生成器
+6.数据库管理器
+7.桌面程序自动生成器
+8.web应用自动生成器
+9.SQL手册
+
+
+
+
+002生产计划
+004生产管理
+005生产现场优分析法o
+006标准时间管理o
+009库存管理
+010采购管理
+011TPM推进法o
+012BOM物料管理o
+013成本管理
+014物流管理
+031TQM全面品质管理o
+036SCM供应链管理
+039生产管理系统构建o
+042PDCA精进法ox
+043PLM产品生命周期管理o
+049数字化车间o
