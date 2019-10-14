@@ -1,8 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// FileInfo
+// File:"BinaryConversion.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:BinaryConversion
+// 1.DecimaltoBinary(int dec)
+// 2.DecimaltoHex(int dec)
+// 3.BinarytoDecimal(string bin)
+// 4.BinarytoHex(string bin)
+// 5.HextoBinary(int hex)
+// 6.HextoDecimal(int hex)
+//
+// File Lines:68
+using System;
 
 namespace Jund.NETHelper.DataTypeHelper
 {

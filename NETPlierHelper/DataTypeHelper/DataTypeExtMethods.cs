@@ -1,9 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// FileInfo
+// File:"DataTypeExtMethodst.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:DataType Ext Methods
+// 1.Base64EncodeBytes(this byte[] inputBytes)
+// 2.EncodeBitmapToString(string bitmapFilePath)
+// 3.MakeBase64EncodedStringForMime(string base64Encoded)
+// 4.Base64DecodeString(this string inputStr)
+// 5.AsciiEncodeBytes(byte[] asciiCharacterArray)
+// 6.UnicodeEncodeBytes(byte[] unicodeCharacterArray)
+// 7.AsciiDecodeString(string asciiCharacters)
+// 8.UnicodeDecodeString(string unicodeCharacters)
+// 9.DeterminingStringIsValidNumber(string str, out double result)
+// 10.RoundUp(double valueToRound)
+// 11.RoundDown(double valueToRound)
+// 12.AddNarrowingChecked(this long lhs, long rhs)
+// 13.InitialLetterUppercase(this string str)
+//
+// File Lines:100
+using System;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Jund.NETHelper.DataTypeHelper
 {

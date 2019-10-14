@@ -1,11 +1,35 @@
-﻿using System;
+﻿// FileInfo
+// File:"StringHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:String Extend Func
+// 1.ConvertToListBySeparator(string str, char separator, bool toLower)
+// 2.ConvertListToStringBySeparator(List<string> list, char separator)
+// 3.ConvertListToStringBySeparator(List<int> list, char separator)
+// 4.HalfChartToFullChar(string str)
+// 5.FullChartToHalfChar(string str)
+// 6.GetFormatDateTime(DateTime date, string format)
+// 7.GetFormatDateTime(DateTime date, DateTimeFormat format)
+//
+// File Lines:127
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Jund.NETHelper.DataTypeHelper
 {
+    /// <summary>
+    /// 字符串扩展类
+    /// </summary>
     public static class StringHelper
     {
         public enum DateTimeFormat

@@ -1,12 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// FileInfo
+// File:"DateTimeHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:DateTime Func
+// 1.ConvertToDateTime(string str, string format)
+// 2.GetLastDate(int year, int month)
+// 3.DayOfWeek GetDayOfWeek(DateTime date)
+// 4.GetDayOfYear(DateTime date)
+// 5.GetLeapMonth(DateTime date)
+// 6.GetWeekOfYear(DateTime date, DayOfWeek firstDayofWeek,bool full_week)
+//
+// File Lines:40
+
+using System;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jund.NETHelper.DataTypeHelper
 {
+    /// <summary>
+    /// 时间扩展类
+    /// </summary>
     public static class DateTimeHelper
     {        
         public static DateTime ConvertToDateTime(string str, string format) => DateTime.ParseExact(str, format, System.Globalization.CultureInfo.CurrentCulture);
