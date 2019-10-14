@@ -1,13 +1,39 @@
-﻿using System;
+﻿// FileInfo
+// File:"FileOperate.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:File Operate
+// 1.WriteFile(string outputfile, string str, Encoding encoding, bool append)
+// 2.WriteFile(string outputfile, List<string> list, Encoding encoding, bool append)
+// 3.ReadFile(string filename, Encoding encoding)
+// 4.ReadFileByLine(string filename, Encoding encoding)
+// 5.CopyFile(string sourceFile, string destFile, bool overwriter = true)
+// 6.DeletePath(string Path)
+// 7.MoveFile(string sourceFile, string destFile)
+// 8.DisplayPathParts(string path)
+// 9.ComparePart(int ver1, int ver2)
+// 10.CompareFileVersions(string file1, string file2)
+//
+// File Lines:154
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Jund.NETHelper.FileHelper
 {
+    /// <summary>
+    /// 文件操作类
+    /// </summary>
     public class FileOperate
     {
         public enum FileComparison
@@ -18,14 +44,14 @@ namespace Jund.NETHelper.FileHelper
             Same = 3
         }
         #region 写文件
-        protected void WriteFile(string outputfile, string str, Encoding encoding, bool append)
+        public void WriteFile(string outputfile, string str, Encoding encoding, bool append)
         {
             StreamWriter writer = new StreamWriter(outputfile, append, encoding);
             writer.Write(str);
             writer.Flush();
             writer.Close();
         }
-        protected void WriteFile(string outputfile, List<string> list, Encoding encoding, bool append)
+        public void WriteFile(string outputfile, List<string> list, Encoding encoding, bool append)
         {
             StreamWriter writer = new StreamWriter(outputfile, append, encoding);
             foreach (string str in list)
@@ -36,7 +62,7 @@ namespace Jund.NETHelper.FileHelper
         #endregion
 
         #region 读文件
-        protected string ReadFile(string filename, Encoding encoding)
+        public string ReadFile(string filename, Encoding encoding)
         {
             if (File.Exists(filename))
             {
@@ -48,23 +74,27 @@ namespace Jund.NETHelper.FileHelper
             else
                 throw (new FileNotFoundException());
         }
+        public List<string> ReadFileByLine(string filename, Encoding encoding)
+        {
+            List<string> lines = new List<string>();
+
+            if (File.Exists(filename))
+            {
+                StreamReader reader = new StreamReader(filename, encoding);
+                while (!reader.EndOfStream)
+                    lines.Add(reader.ReadLine());
+                reader.Close();
+            }
+            else
+                throw (new FileNotFoundException());
+
+            return lines;
+        }
         #endregion
 
-        public static void CopyFile(string sourceFile, string destFile, bool overwriter = true)
-        {
-            File.Copy(sourceFile, destFile, overwriter);
-        }
-
-        public static void DeletePath(string Path)
-        {
-            File.Delete(Path);
-        }
-
-        public static void MoveFile(string sourceFile, string destFile)
-        {
-            File.Move(sourceFile, destFile);
-        }
-
+        public static void CopyFile(string sourceFile, string destFile, bool overwriter = true)=> File.Copy(sourceFile, destFile, overwriter);
+        public static void DeletePath(string Path)=> File.Delete(Path);
+        public static void MoveFile(string sourceFile, string destFile)=> File.Move(sourceFile, destFile);
         public static StringBuilder DisplayPathParts(string path)
         {
             if (string.IsNullOrWhiteSpace(path))
@@ -86,9 +116,13 @@ namespace Jund.NETHelper.FileHelper
 
             return format;
         }
-        private static FileComparison ComparePart(int p1, int p2) =>
-p1 > p2 ? FileComparison.Newer :
-(p1 < p2 ? FileComparison.Older : FileComparison.Same);
+        /// <summary>
+        /// Compare Version
+        /// </summary>
+        /// <param name="ver1"></param>
+        /// <param name="ver2"></param>
+        /// <returns></returns>
+        public static FileComparison ComparePart(int ver1, int ver2) =>ver1 > ver2 ? FileComparison.Newer :(ver1 < ver2 ? FileComparison.Older : FileComparison.Same);
         public static FileComparison CompareFileVersions(string file1, string file2)
         {
             if (string.IsNullOrWhiteSpace(file1))

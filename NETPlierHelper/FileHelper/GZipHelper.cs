@@ -1,13 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// FileInfo
+// File:"GZipHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:GZip
+// 1.Compress(DirectoryInfo directorySelected)
+// 2.Decompress(FileInfo fileToDecompress)
+//
+// File Lines:67
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jund.NETHelper.FileHelper
 {
+    /// <summary>
+    /// Gzip
+    /// </summary>
     public static class GZipHelper
     {
         public static void Compress(DirectoryInfo directorySelected)
@@ -25,12 +39,10 @@ namespace Jund.NETHelper.FileHelper
                                CompressionMode.Compress))
                             {
                                 originalFileStream.CopyTo(compressionStream);
-
                             }
                         }
                         FileInfo info = new FileInfo(directorySelected.Name + Path.DirectorySeparatorChar + fileToCompress.Name + ".gz");
                     }
-
                 }
             }
         }

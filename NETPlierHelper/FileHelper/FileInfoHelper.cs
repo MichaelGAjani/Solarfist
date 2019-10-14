@@ -1,11 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// FileInfo
+// File:"FileInfoHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:Inherited from FileSystemInfo
+//
+// File Lines:75
+
 using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jund.NETHelper.FileHelper
 {

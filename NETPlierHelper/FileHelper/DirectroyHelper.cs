@@ -1,4 +1,29 @@
-﻿using System;
+﻿// FileInfo
+// File:"DirectroyHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:Directroy Func
+// 1.IsExist(string directoryPath)
+// 2.GetDirectories(string directoryPath,string searchPattern,bool searchChild)
+// 3.GetFiles(string directoryPath, string searchPattern, bool searchChild) 
+// 4.IsEmpty(string directoryPath, string searchPattern)
+// 5.FileContains(string directoryPath, string searchPattern, bool searchChild)
+// 6.CreateDirectory(string dir)
+// 7.DeleteDirectory(string dir)
+// 8.CopyFolder(string sourceDirectory, string destDirectory)
+// 9.GetAllDirectoriesAndFiles(string dir)
+// 10.DisplayAllDriveInfo
+//
+// File Lines:87
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,7 +32,10 @@ using System.Threading.Tasks;
 
 namespace Jund.NETHelper.FileHelper
 {
-    class DirectroyHelper
+    /// <summary>
+    /// 目录操作类
+    /// </summary>
+    public class DirectroyHelper
     {
         public static bool IsExist(string directoryPath)=> Directory.Exists(directoryPath);
         public static List<string> GetDirectories(string directoryPath,string searchPattern,bool searchChild) => Directory.GetDirectories(directoryPath,searchPattern, searchChild?SearchOption.AllDirectories: SearchOption.TopDirectoryOnly).ToList();
@@ -28,7 +56,7 @@ namespace Jund.NETHelper.FileHelper
 
             File.Delete(sourceDirectory + @"\tmp.zip");
         }
-        public static IEnumerable<FileSystemInfo> GetAllFilesAndDirectories(string dir)
+        public static IEnumerable<FileSystemInfo> GetAllDirectoriesAndFiles(string dir)
         {
             if (string.IsNullOrWhiteSpace(dir))
                 throw new ArgumentNullException(nameof(dir));
