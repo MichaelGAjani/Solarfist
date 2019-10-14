@@ -1,13 +1,23 @@
-﻿using System;
+﻿// FileInfo
+// File:"XmlNodeObject.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+//
+// File Lines:44
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace Jund.NETHelper.FileHelper.XmlFile
 {
-   public class XmlNodeObject
+    public class XmlNodeObject
     {
         int _level;
         XmlNodeType _type;

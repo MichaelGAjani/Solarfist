@@ -1,13 +1,37 @@
-﻿using System;
+﻿// FileInfo
+// File:"XmlHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:XML File Operate
+// 1.AccessXml
+// 2.QueryXml(string xml_file,string xml_element,string xml_attribute,string attribute_value,string node_value)
+// 3.AddElement(string xmlFile,string key,string value)
+// 4.AddElement(string xmlFile, string key, List<string> value)
+// 5.AddAttribute(string xmlFile, string nodeName, string attributeName, string value)
+// 6.RemoveElement(string xmlFile, string name)
+// 7.RemoveAttribute(string xmlFile, string nodeName, string AttributeName)
+// 8.ReplaceElement(string xmlFile, string name, string newName)
+// 9.ReplaceAttribute(string xmlFile, string NodeName, string AttributeName, string newAttribute)
+//
+// File Lines:145
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 
 namespace Jund.NETHelper.FileHelper.XmlFile
 {
+    /// <summary>
+    /// XML文件操作类
+    /// </summary>
     public class XmlHelper
     {
         public static List<XmlNodeObject> AccessXml(string xml)
@@ -56,7 +80,6 @@ namespace Jund.NETHelper.FileHelper.XmlFile
 
             return node_list;
         }
-
         public static List<string> QueryXml(string xml_file,string xml_element,string xml_attribute,string attribute_value,string node_value)
         {
             List<string> result = new List<string>();
