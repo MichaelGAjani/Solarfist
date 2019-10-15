@@ -1,11 +1,24 @@
-﻿using Microsoft.International.Converters.PinYinConverter;
+﻿// FileInfo
+// File:"ChineseCultureHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:Chinese Culture
+// 1.ChartoPinyin(string str)
+// 2.ChineseYuan(decimal number)
+//
+// File Lines:120
+using Microsoft.International.Converters.PinYinConverter;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Jund.NETHelper.CultureHelper
 {
@@ -67,56 +80,17 @@ namespace Jund.NETHelper.CultureHelper
 
             return ChineseDate.AddDays(1).Month == 1 && ChineseDate.AddDays(1).Day == 1;
         }
-        /// <summary>
-        /// 农历年第一天
-        /// </summary>
         public DateTime FirstDate  => chineseCalendar.MinSupportedDateTime;
-        /// <summary>
-        /// 农历年最后一天
-        /// </summary>
         public DateTime LastDate => chineseCalendar.MaxSupportedDateTime;
-        /// <summary>
-        /// 天干
-        /// </summary>
         public int CelestialStem => chineseCalendar.GetCelestialStem(Year);
-        /// <summary>
-        /// 天干字符
-        /// </summary>
-        public string CelestialChar => Celestial[CelestialStem - 1];
-        /// <summary>
-        /// 地支
-        /// </summary>
-        public int TerrestrialBranch => chineseCalendar.GetTerrestrialBranch(Year);
-        /// <summary>
-        /// 地支字符
-        /// </summary>
-        public string TerrestrialChar => Terrestrial[TerrestrialBranch - 1]; 
-        /// <summary>
-        /// 60甲子年
-        /// </summary>
+        public string CelestialChar => Celestial[CelestialStem - 1];      
+        public int TerrestrialBranch => chineseCalendar.GetTerrestrialBranch(Year);       
+        public string TerrestrialChar => Terrestrial[TerrestrialBranch - 1];        
         public int SexagenaryYear  => chineseCalendar.GetSexagenaryYear(ChineseDate); 
-        /// <summary>
-        /// 60甲子年
-        /// </summary>
         public string SexagenaryChar => Celestial[(SexagenaryYear + 1) % 10] + Terrestrial[(SexagenaryYear + 1) % 12]; 
-        /// <summary>
-        /// 闰月
-        /// </summary>
-        public int LeapMonth => chineseCalendar.GetLeapMonth(Year); 
-        /// <summary>
-        /// 是否闰年
-        /// </summary>
-        public bool LeapYear => chineseCalendar.IsLeapYear(Year); 
-        /// <summary>
-        /// 周数
-        /// </summary>
+        public int IsLeapMonth => chineseCalendar.GetLeapMonth(Year); 
+        public bool IsLeapYear => chineseCalendar.IsLeapYear(Year); 
         public int WeekOfYear => chineseCalendar.GetWeekOfYear(ChineseDate, CalendarWeekRule.FirstFullWeek, DayOfWeek.Monday); 
-
-        /// <summary>
-        /// 汉字转拼音
-        /// </summary>
-        /// <param name="str">汉字</param>
-        /// <returns>拼音</returns>
         public static List<string> ChartoPinyin(string str)
         {
             List<string> pinyin_list = new List<string>();
@@ -134,11 +108,6 @@ namespace Jund.NETHelper.CultureHelper
 
             return pinyin_list;
         }
-        /// <summary>
-        /// 人民币转大写
-        /// </summary>
-        /// <param name="number">金额</param>
-        /// <returns></returns>
         public static string ChineseYuan(decimal number)
         {
             var s = number.ToString("#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A");
