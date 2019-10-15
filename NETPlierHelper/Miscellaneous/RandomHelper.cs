@@ -1,8 +1,24 @@
-﻿using System;
+﻿// FileInfo
+// File:"RandomHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:Random
+// 1.GetRandomString(int length)
+// 2.GetRandomItem(List<object> list)
+// 3.GetRandomNumber(int min, int max)
+// 4.GetRandomFloatNumber(int min, int max, int dec_places)
+// 5.GetRandomDate(int min_year,int max_year)
+//
+// File Lines:92
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jund.NETHelper.Miscellaneous
 {
