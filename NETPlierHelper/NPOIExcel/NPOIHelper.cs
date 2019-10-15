@@ -1,15 +1,31 @@
-﻿using NPOI.SS.Converter;
+﻿// FileInfo
+// File:"NPOIHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:Use Npoi Operate Excel
+// 1.ExportHtml(string fileName, string htmlFile, bool outputColumnHeaders = false, bool outputHiddenColumns = false, bool outputHiddenRows = false, bool outputRowNumbers = false)
+// 2.CreateExcel(string fileName, DataTable table)
+// 3.CreateExcel(string fileName, string sheetName, List<object> list)
+// 4.WriteCell(string fileName, int rowNum, int colNum, string value)
+// 5.MergeCell(string fileName,int firstRow,int lastRow,int firstCol,int lastCol)
+//
+// File Lines:146
+using NPOI.SS.Converter;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jund.NETHelper.NPOIExcel
 {
