@@ -1,10 +1,33 @@
-﻿using System;
+﻿// FileInfo
+// File:"RegularExpressions.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:RegularExpressions
+// 1.ExtractGroupings(string source, string matchPattern, bool wantInitialMatch)
+// 2.VerifyRegEx(string testPattern)
+// 3.MatchHandler(Match theMatch)
+// 4.Tokenize(string equation)
+// 5.GetLines(string source, string pattern, bool isFileName)
+// 6.GetBeginningOfLine(string text, int startPointOfMatch)
+// 7.GetEndOfLine(string text, int endPointOfMatch)
+// 8.FindOccurrenceOf(string source, string pattern, int occurrence)
+// 9.FindEachOccurrenceOf(string source, string pattern, int occurrence)
+// 10.IsMatch(string input, string pattern)
+// 11.IsMatch(string input, string pattern, RegexOptions options)
+//
+// File Lines:278
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Jund.NETHelper.RegularHelper
 {

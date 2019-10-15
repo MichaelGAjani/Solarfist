@@ -1,12 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// FileInfo
+// File:"RegaxHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:Regax Match
+// 1.IsNumeric(string value)
+// 2.Int(string value) 
+// 3.IsFloat(string value) 
+// 4.IsUnsign(string value)
+// 5.IsAlphanumeric(string value) 
+// 6.IsLatin(string value) 
+// 7.IsIPv4(string value) 
+// 8.IsEmailAddress(string value) 
+// 9.IsURL(string value) 
+// 10.IsValidRegisterName(string value) 
+// 11.IsPassword(string value, int min_char = 6, int max_char = 32)
+// 12.IsPostCode(string value) 
+// 13.sTelphone(string value)
+//
+// File Lines:52
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Jund.NETHelper.RegularHelper
 {
+    /// <summary>
+    /// 正则表达式验证类
+    /// </summary>
     public static class RegaxHelper
     {
         public static bool IsNumeric(string value)=> Regex.IsMatch(value, @"^[+-]?\d*[.]?\d*$");
