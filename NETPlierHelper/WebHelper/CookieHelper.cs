@@ -1,4 +1,20 @@
-﻿ 
+﻿// FileInfo
+// File:"CookieHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:Cookie
+// 1.ClearCookie(string key)
+// 2.GetCookie(string key)
+// 3.SetCookie(string key, string value, DateTime expires)
+//
+// File Lines:56
 
 using System;
 using System.Web;
@@ -7,54 +23,30 @@ namespace Jund.NETHelper.WebHelper
 {
     public class CookieHelper
     {
-        /// <summary>
-        /// 清除指定Cookie
-        /// </summary>
-        /// <param name="cookiename">cookiename</param>
-        public static void ClearCookie(string cookiename)
+        public static void ClearCookie(string key)
         {
-            HttpCookie cookie = HttpContext.Current.Request.Cookies[cookiename];
+            HttpCookie cookie = HttpContext.Current.Request.Cookies[key];
             if (cookie != null)
             {
-                cookie.Expires = DateTime.Now.AddYears(-3);
+                cookie.Expires = DateTime.Now.AddYears(-1);
                 HttpContext.Current.Response.Cookies.Add(cookie);
             }
-        }
-        /// <summary>
-        /// 获取指定Cookie值
-        /// </summary>
-        /// <param name="cookiename">cookiename</param>
-        /// <returns></returns>
-        public static string GetCookieValue(string cookiename)
+        }      
+        public static string GetCookie(string key)
         {
-            HttpCookie cookie = HttpContext.Current.Request.Cookies[cookiename];
-            string str = string.Empty;
+            HttpCookie cookie = HttpContext.Current.Request.Cookies[key];
+           
             if (cookie != null)
             {
-                str =HttpUtility.UrlDecode(cookie.Value);
+                 return HttpUtility.UrlDecode(cookie.Value);
             }
-            return str;
+            return String.Empty;
         }
-        /// <summary>
-        /// 添加一个Cookie（24小时过期）
-        /// </summary>
-        /// <param name="cookiename"></param>
-        /// <param name="cookievalue"></param>
-        public static void SetCookie(string cookiename, string cookievalue)
+        public static void SetCookie(string key, string value, DateTime expires)
         {
-            SetCookie(cookiename, cookievalue, DateTime.Now.AddDays(1.0));
-        }
-        /// <summary>
-        /// 添加一个Cookie
-        /// </summary>
-        /// <param name="cookiename">cookie名</param>
-        /// <param name="cookievalue">cookie值</param>
-        /// <param name="expires">过期时间 DateTime</param>
-        public static void SetCookie(string cookiename, string cookievalue, DateTime expires)
-        {
-            HttpCookie cookie = new HttpCookie(cookiename)
+            HttpCookie cookie = new HttpCookie(key)
             {
-                Value = cookievalue,
+                Value = value,
                 Expires = expires
             };
             HttpContext.Current.Response.Cookies.Add(cookie);

@@ -1,9 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// FileInfo
+// File:"FTPHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:FTP
+// 1.FtpDownloadAsync(Uri ftpSite, string targetPath, string loginID, string password)
+//
+// File Lines:68
+
+using System;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Jund.NETHelper.WebHelper

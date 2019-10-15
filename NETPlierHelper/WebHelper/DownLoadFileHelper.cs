@@ -1,9 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// FileInfo
+// File:"DownLoadFileHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:Download
+// 1.DownloadLargeFile(string fileName,string filePath)
+// 2.DownloadFile(string fileName, string filePath)
+// 3.DownloadFileByBlock(string fileName, string filePath)
+// 4.DownloadFileByStream(string fileName, string filePath)
+//
+// File Lines:92
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace Jund.NETHelper.WebHelper
@@ -17,7 +31,6 @@ namespace Jund.NETHelper.WebHelper
             HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
             HttpContext.Current.Response.TransmitFile(filePath);
         }
-
         public void DownloadFile(string fileName, string filePath)
         {
             filePath = HttpContext.Current.Server.MapPath(filePath);          //目标文件路径

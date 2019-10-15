@@ -1,8 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// FileInfo
+// File:"IPHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:IP
+// 1.GetIP
+//
+// File Lines:46
+using Jund.NETHelper.RegularHelper;
 using System.Web;
 
 namespace Jund.NETHelper.WebHelper
@@ -24,16 +35,11 @@ namespace Jund.NETHelper.WebHelper
                 userHostAddress = HttpContext.Current.Request.UserHostAddress;
             }
             //最后判断获取是否成功，并检查IP地址的格式（检查其格式非常重要）
-            if (!string.IsNullOrEmpty(userHostAddress) && IsIP(userHostAddress))
+            if (!string.IsNullOrEmpty(userHostAddress) && RegaxHelper.IsIPv4(userHostAddress))
             {
                 return userHostAddress;
             }
             return "127.0.0.1";
-        }
-
-        public static bool IsIP(string ip)
-        {
-            return System.Text.RegularExpressions.Regex.IsMatch(ip, @"^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$");
         }
     }
 }
