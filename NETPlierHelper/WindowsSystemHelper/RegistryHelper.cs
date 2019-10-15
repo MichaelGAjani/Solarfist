@@ -1,9 +1,33 @@
-﻿using Microsoft.Win32;
+﻿// FileInfo
+// File:"RegistryHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:Registry
+// 1.CreateRegistryFolder(RegistryRootEnum root, string path, string folder)
+// 2.DeleteRegistryFolder(RegistryRootEnum root, string path, string folder)
+// 3.DeleteKeyValue(RegistryRootEnum root, string path, string key)
+// 4.GetRegistryFolderCount(RegistryRootEnum root, string path)
+// 5.GetRegistryFolderNames(RegistryRootEnum root, string path)
+// 6.GetRootKey(RegistryRootEnum Root)
+// 7.GetRegistryKeyValue(RegistryRootEnum root, string path, string key)
+// 8.GetRegistryKeyValueCount(RegistryRootEnum root, string path)
+// 9.GetSettingNames(RegistryRootEnum root, string path)
+// 10.SetRegistryValue(RegistryRootEnum Root, string Path, string Key, string Value)
+// 11.KeyExist(RegistryRootEnum root, string path, string folder, string key)
+// 12.KeyClose(RegistryKey rootKey)
+//
+// File Lines:228
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jund.NETHelper.WindowsSystemHelper
 {
@@ -23,28 +47,18 @@ namespace Jund.NETHelper.WindowsSystemHelper
             HKEY_PERFORMENCE_DATA
         }
 
-        // Methods
-        /// <summary>
-        /// Create Registry Folder
-        /// </summary>
-        /// <param name="Root">Root Folder</param>
-        /// <param name="Path">Path</param>
-        /// <param name="Folder">Folder name</param>
-        /// <returns></returns>
-        public static bool CreateRegistryFolder(RegistryRootEnum Root, string Path, string Folder)
+        public static void CreateRegistryFolder(RegistryRootEnum root, string path, string folder)
         {
-            using (RegistryKey rootKey = GetRootKey(Root))
+            RegistryKey rootKey = GetRootKey(root);
+            if (KeyExist(root, path, folder, String.Empty))
             {
-                if (((rootKey == null) || !(Path != string.Empty)) || !(Folder != string.Empty))
-                {
-                    return false;
-                }
                 try
                 {
-                    rootKey.OpenSubKey(Path, true).CreateSubKey(Folder).Close();
-                    return true;
+                    rootKey = rootKey.OpenSubKey(path, true);
+                    rootKey.CreateSubKey(folder).Close();
+                    KeyClose(rootKey);
                 }
-                catch(System.Security.SecurityException ex)
+                catch (System.Security.SecurityException ex)
                 {
                     throw ex;
                 }
@@ -54,114 +68,64 @@ namespace Jund.NETHelper.WindowsSystemHelper
                 }
             }
         }
-
-        public static bool DeleteRegFolder(RegistryRootEnum Root, string Path, string Folder)
+        public static void DeleteRegistryFolder(RegistryRootEnum root, string path, string folder)
         {
-            bool flag = false;
-            RegistryKey rootKey = GetRootKey(Root);
-            if (((rootKey == null) || !(Path != string.Empty)) || !(Folder != string.Empty))
-            {
-                return flag;
-            }
-            try
-            {
-                rootKey = rootKey.OpenSubKey(Path, true);
-                rootKey.DeleteSubKey(Folder, false);
-                rootKey.Close();
-                rootKey = null;
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public static bool DeleteSetting(RegistryRootEnum Root, string Path, string Key)
-        {
-            bool flag = false;
-            RegistryKey rootKey = GetRootKey(Root);
-            if (((rootKey == null) || !(Path != string.Empty)) || !(Key != string.Empty))
-            {
-                return flag;
-            }
-            try
-            {
-                rootKey = rootKey.OpenSubKey(Path, true);
-                rootKey.DeleteValue(Key, false);
-                rootKey.Close();
-                rootKey = null;
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public static bool FolderExists(RegistryRootEnum Root, string Path, string Folder)
-        {
-            bool flag = false;
-            RegistryKey rootKey = GetRootKey(Root);
-            if (((rootKey == null) || !(Path != string.Empty)) || !(Folder != string.Empty))
-            {
-                return flag;
-            }
-            try
-            {
-                Path = (Path.Substring(Path.Length - 1) == @"\") ? Path : (Path + @"\");
-                rootKey.OpenSubKey(Path + Folder, false).Close();
-                rootKey = null;
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public static int GetRegFolderCount(RegistryRootEnum Root, string Path)
-        {
-            int subKeyCount = 0;
-            RegistryKey rootKey = GetRootKey(Root);
-            if ((rootKey != null) && (Path != string.Empty))
+            RegistryKey rootKey = GetRootKey(root);
+            if (KeyExist(root, path, folder, String.Empty))
             {
                 try
                 {
-                    rootKey = rootKey.OpenSubKey(Path, false);
-                    subKeyCount = rootKey.SubKeyCount;
-                    rootKey.Close();
-                    rootKey = null;
+                    rootKey = rootKey.OpenSubKey(path, true);
+                    rootKey.DeleteSubKey(folder, false);
+                    KeyClose(rootKey);
                 }
-                catch
+                catch (Exception ex)
                 {
-                    subKeyCount = 0;
+                    throw ex;
                 }
+            }
+        }
+        public static void DeleteKeyValue(RegistryRootEnum root, string path, string key)
+        {
+            RegistryKey rootKey = GetRootKey(root);
+            if (KeyExist(root, path, String.Empty, key))
+            {
+                try
+                {
+                    rootKey = rootKey.OpenSubKey(path, true);
+                    rootKey.DeleteValue(key, false);
+                    KeyClose(rootKey);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        public static int GetRegistryFolderCount(RegistryRootEnum root, string path)
+        {
+            int subKeyCount = 0;
+            RegistryKey rootKey = GetRootKey(root);
+            if (KeyExist(root, path, String.Empty, String.Empty))
+            {
+                rootKey = rootKey.OpenSubKey(path, false);
+                subKeyCount = rootKey.SubKeyCount;
+                KeyClose(rootKey);
             }
             return subKeyCount;
         }
-
-        public static string[] GetRegFolderNames(RegistryRootEnum Root, string Path)
+        public static List<string> GetRegistryFolderNames(RegistryRootEnum root, string path)
         {
             string[] subKeyNames = null;
-            RegistryKey rootKey = GetRootKey(Root);
-            if ((rootKey != null) && (Path != string.Empty))
+            RegistryKey rootKey = GetRootKey(root);
+            if (KeyExist(root, path, String.Empty, String.Empty))
             {
-                try
-                {
-                    rootKey = rootKey.OpenSubKey(Path, false);
-                    subKeyNames = rootKey.GetSubKeyNames();
-                    rootKey.Close();
-                    rootKey = null;
-                }
-                catch
-                {
-                    subKeyNames = null;
-                }
+                rootKey = rootKey.OpenSubKey(path, false);
+                subKeyNames = rootKey.GetSubKeyNames();
+                KeyClose(rootKey);
             }
-            return subKeyNames;
+            return subKeyNames.ToList();
         }
-
         public static RegistryKey GetRootKey(RegistryRootEnum Root)
         {
             switch (Root)
@@ -189,170 +153,75 @@ namespace Jund.NETHelper.WindowsSystemHelper
             }
             return null;
         }
-
-        public static RegistryRootEnum GetRootKey(string Root)
+        public static string GetRegistryKeyValue(RegistryRootEnum root, string path, string key)
         {
-            RegistryRootEnum enum2 = RegistryRootEnum.HKEY_LOCAL_MACHINE;
-            switch (Root.ToUpper())
+            string value = String.Empty;
+            RegistryKey rootKey = GetRootKey(root);
+            if (KeyExist(root, path, String.Empty, key))
             {
-                case "HKEY_LOCAL_MATCHINE":
-                    return RegistryRootEnum.HKEY_LOCAL_MACHINE;
-
-                case "HKEY_CURRENT_USER":
-                    return RegistryRootEnum.HKEY_CURRENT_USER;
-
-                case "HKEY_CURRENT_CONFIG":
-                    return RegistryRootEnum.HKEY_CURRENT_CONFIG;
-
-                case "HKEY_CLASSES_ROOT":
-                    return RegistryRootEnum.HKEY_CLASSES_ROOT;
-
-                case "HKEY_USERS":
-                    return RegistryRootEnum.HKEY_USERS;
-
-                case "HKEY_DYN_DATA":
-                    return RegistryRootEnum.HKEY_DYN_DATA;
-
-                case "HKEY_PERFORMENCE_DATA":
-                    return RegistryRootEnum.HKEY_PERFORMENCE_DATA;
+                rootKey = rootKey.OpenSubKey(path, true);
+                value = rootKey.GetValue(key, String.Empty).ToString();
+                KeyClose(rootKey);
             }
-            return enum2;
+            return value;
         }
-
-        public static string GetSetting(RegistryRootEnum Root, string Path, string Key, string Default)
-        {
-            string str = Default;
-            RegistryKey rootKey = GetRootKey(Root);
-            if ((rootKey != null) && (Path != string.Empty))
-            {
-                try
-                {
-                    rootKey = rootKey.OpenSubKey(Path, true);
-                    str = rootKey.GetValue(Key, Default).ToString();
-                    rootKey.Close();
-                    rootKey = null;
-                }
-                catch
-                {
-                    str = Default;
-                }
-            }
-            return str;
-        }
-
-        public static bool GetSetting(RegistryRootEnum Root, string Path, string Key, ref string Value, string Default)
-        {
-            bool flag = false;
-            RegistryKey rootKey = GetRootKey(Root);
-            if ((rootKey == null) || !(Path != string.Empty))
-            {
-                return flag;
-            }
-            try
-            {
-                rootKey = rootKey.OpenSubKey(Path, true);
-                Value = rootKey.GetValue(Key, Default).ToString();
-                rootKey.Close();
-                rootKey = null;
-                return true;
-            }
-            catch
-            {
-                Value = Default;
-                return false;
-            }
-        }
-
-        public static int GetSettingCount(RegistryRootEnum Root, string Path)
+        public static int GetRegistryKeyValueCount(RegistryRootEnum root, string path)
         {
             int valueCount = 0;
-            RegistryKey rootKey = GetRootKey(Root);
-            if ((rootKey != null) && (Path != string.Empty))
+            RegistryKey rootKey = GetRootKey(root);
+            if (KeyExist(root, path, String.Empty, String.Empty))
             {
-                try
-                {
-                    rootKey = rootKey.OpenSubKey(Path, false);
-                    valueCount = rootKey.ValueCount;
-                    rootKey.Close();
-                    rootKey = null;
-                }
-                catch
-                {
-                    valueCount = 0;
-                }
+                rootKey = rootKey.OpenSubKey(path, false);
+                valueCount = rootKey.ValueCount;
+                KeyClose(rootKey);
             }
             return valueCount;
         }
-
-        public static string[] GetSettingNames(RegistryRootEnum Root, string Path)
+        public static List<string> GetSettingNames(RegistryRootEnum root, string path)
         {
             string[] valueNames = null;
-            RegistryKey rootKey = GetRootKey(Root);
-            if ((rootKey != null) && (Path != string.Empty))
+            RegistryKey rootKey = GetRootKey(root);
+            if (KeyExist(root, path, String.Empty, String.Empty))
             {
-                try
-                {
-                    rootKey = rootKey.OpenSubKey(Path, false);
-                    valueNames = rootKey.GetValueNames();
-                    rootKey.Close();
-                    rootKey = null;
-                }
-                catch
-                {
-                    valueNames = null;
-                }
+                rootKey = rootKey.OpenSubKey(path, true);
+                valueNames = rootKey.GetValueNames();
+                KeyClose(rootKey);
             }
-            return valueNames;
+            return valueNames.ToList();
         }
-
-        public static bool SetSetting(RegistryRootEnum Root, string Path, string Key, string Value)
+        public static void SetRegistryValue(RegistryRootEnum Root, string Path, string Key, string Value)
+        {
+            RegistryKey rootKey = GetRootKey(Root);
+            if ((rootKey == null) || (Path == string.Empty))
+            {
+                return;
+            }
+            rootKey = rootKey.OpenSubKey(Path, true);
+            rootKey.SetValue(Key, Value);
+            rootKey.Close();
+            rootKey = null;
+        }
+        public static bool KeyExist(RegistryRootEnum root, string path, string folder, string key)
         {
             bool flag = false;
-            RegistryKey rootKey = GetRootKey(Root);
-            if ((rootKey == null) || !(Path != string.Empty))
+            RegistryKey rootKey = GetRootKey(root);
+            if (rootKey == null)
+                throw new Exception("Registry is not exist!");
+            if ((path == string.Empty) && (folder == string.Empty))
+                throw new Exception("Path or folder is not exist!");
+
+            if (key != String.Empty)
             {
-                return flag;
-            }
-            try
-            {
-                rootKey = rootKey.OpenSubKey(Path, true);
-                rootKey.SetValue(Key, Value);
+                rootKey = rootKey.OpenSubKey(path, true);
+                if (rootKey == null) return false;
+                flag = rootKey.GetValueNames().ToList().Exists(obj => obj == key);
+
                 rootKey.Close();
                 rootKey = null;
-                return true;
+                return flag;
             }
-            catch
-            {
-                return false;
-            }
+            return true;
         }
-
-        public static bool SettingExists(RegistryRootEnum Root, string Path, string Key)
-        {
-            bool flag = false;
-            RegistryKey rootKey = GetRootKey(Root);
-            if ((rootKey != null) && (Path != string.Empty))
-            {
-                try
-                {
-                    rootKey = rootKey.OpenSubKey(Path, true);
-                    foreach (string str in rootKey.GetValueNames())
-                    {
-                        if (str == Key)
-                        {
-                            flag = true;
-                            break;
-                        }
-                    }
-                    rootKey.Close();
-                    rootKey = null;
-                }
-                catch
-                {
-                    flag = false;
-                }
-            }
-            return flag;
-        }
+        private static void KeyClose(RegistryKey rootKey) => rootKey.Close();
     }
 }
