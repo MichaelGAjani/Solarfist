@@ -1,9 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// FileInfo
+// File:"QRHelper.cs" 
+// Solution:"Solarfist"
+// Project:"DotNET Framework Helper" 
+// Create:"2019-10-10"
+// Author:"Michael G"
+// https://github.com/MichaelGAjani/Solarfist
+//
+// License:GNU General Public License v3.0
+// 
+// Version:"1.0"
+// Function:QR
+// 1.CreateSVGQR(string code, int size)
+// 2.CreateQR(string code, int size)
+//
+// File Lines:46
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ThoughtWorks.QRCode.Codec;
 
 namespace Jund.NETHelper.MultiMediaHelper
